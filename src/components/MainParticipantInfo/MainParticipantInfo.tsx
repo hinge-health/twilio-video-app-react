@@ -87,7 +87,7 @@ export default function MainParticipantInfo({ participant, children }: MainParti
   const isRemoteParticipantScreenSharing = screenShareParticipant && screenShareParticipant !== localParticipant;
 
   const publications = usePublications(participant);
-  const videoPublication = publications.find(p => p.trackName.includes('camera'));
+  const videoPublication = publications.find(p => p.trackName.includes('camera') || (p.kind === "video" && !p.trackName.includes('screen')));
   const screenSharePublication = publications.find(p => p.trackName.includes('screen'));
 
   const videoTrack = useTrack(screenSharePublication || videoPublication);
